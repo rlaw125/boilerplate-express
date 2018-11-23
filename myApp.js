@@ -25,9 +25,24 @@ app.get('/', (req, res)=>{
 app.use(express.static(__dirname + '/public'));
 
 /** 5) serve JSON on a specific route */
-
+        /* Commented out for next exercise to work
+app.get('/json', (req, res)=>{
+res.json({"message": "Hello json"});
+});  */
 
 /** 6) Use the .env file to configure the app */
+let newJSONMessage = "Hello json";
+ // const messageStyle = process.env.MESSAGE_STYLE; MESSAGE_STYLE declared as global variable to remain constant  
+app.get('/json', (req, res)=>{
+  const messageStyle = process.env.MESSAGE_STYLE;  // For purposes of this exercise, MESSAGE_STYLE was declared inside get request to pass the freeCodeCamp tests
+  if (messageStyle=='uppercase'){
+  newJSONMessage = newJSONMessage.toUpperCase(); 
+ res.json({"message": newJSONMessage});
+    //console.log(req);
+} else {
+res.json({"message": "Hello json"});
+}
+});
  
  
 /** 7) Root-level Middleware - A logger */
