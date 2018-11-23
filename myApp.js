@@ -3,6 +3,10 @@ var express = require('express');
 var app = express();
 
 // --> 7)  Mount the Logger middleware here
+let middleware=(req, res, next)=>{
+console.log(req.method+" "+req.path+" - "+req.ip);
+}
+app.use(middleware);
 
 
 // --> 11)  Mount the body-parser middleware  here
