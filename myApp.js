@@ -10,7 +10,7 @@ app.use(middleware);
 
 
 // --> 11)  Mount the body-parser middleware  here
-
+app.use(bodyParser.urlencoded({extended: false}));
 
 /** 1) Meet the node console. */
 console.log("Hello world");
@@ -69,7 +69,9 @@ res.json({echo: req.params.word});
 
 /** 10) Get input from client - Query parameters */
 // /name?first=<firstname>&last=<lastname>
-
+app.route('/name').get((req,res)=>{
+  res.json({name: req.query.first + " "+req.query.last});
+});
   
 /** 11) Get ready for POST Requests - the `body-parser` */
 // place it before all the routes !
